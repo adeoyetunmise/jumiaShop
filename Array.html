@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome -->
+<link
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+rel="stylesheet"
+/>
+<!-- Google Fonts -->
+<link
+href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+rel="stylesheet"
+/>
+<!-- MDB -->
+<link
+href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css"
+rel="stylesheet"
+/>
+    <title>Document</title>
+    <style>
+        input{
+            text-align: center !important;
+            align-items: center;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container-fluid mt-lg-5 col-lg-10 text-center col-10 shadow rounded py-3">
+        <h1 class="text-center  text-danger">JUMIA SHOP</h1>
+        <div class="col-lg-8 mx-auto" >
+            <input type="text" class= 'form-control' placeholder="Enter an item" id="userInput">
+        </div>
+
+        <div class="row py-4">
+            <div  class='col-lg-2  col-12'>
+                <button class="btn btn-dark mt-3 " onclick="add()">Add Item</button>
+            </div>
+            
+            <div class='col-lg-2 col-12'>
+                    <button class="btn btn-danger mt-3" onclick="deleteLastItem()">Delete Last Item</button>
+            </div>
+            <div class='col-lg-2 col-12'>
+                <button class="btn btn-info mt-3" onclick="deleteFirstItem()">Delete First Item</button>
+            </div>
+            <div class='col-lg-2 '>
+                <button class="btn btn-success mt-3" onclick="deleteOneItem()">Delete One Item</button>
+            </div>
+            <div class='col-lg-2 col-12'>
+                <button class="btn btn-warning mt-3" onclick="editOneItem()">Edit One Item</button>
+            </div>
+            <div class='col-lg-2 col-12'>
+                <button class="btn btn-primary mt-3" onclick="deleteAllItem()">Delete All Items</button>
+            </div>
+
+             
+        </div>
+
+        <div id="disp"></div>
+    </div>
+
+
+    <script>
+         var allItems = []
+        function add() {
+        if (userInput.value == "") {
+            alert(`You must add an item!`)
+        }else{
+            allItems.push(userInput.value)
+            console.log(allItems);
+            disp.innerHTML = `<h1>${allItems}</h1>`
+            userInput.value = ''
+           
+        } 
+        }
+
+        function deleteAllItem() {
+            var response = confirm('are you sure you want to delete all Items?')
+           if (allItems == '') {
+                alert('No item to delete')
+           }else if(response == true){
+           
+                allItems.splice(0)
+                console.log('deleted');
+                disp.innerHTML = ''
+           }else{
+                console.log('do not delete');
+                disp.innerHTML = `<h1>${allItems}</h1>`
+                
+           }
+        }
+
+        function deleteLastItem(){
+            if (allItems =='') {
+                alert('Your cart is empty!')
+            }else{
+            allItems.pop(userInput.value)
+            console.log(allItems);
+            disp.innerHTML = `<h1>${allItems}</h1>`
+            }
+           
+        }
+
+        function deleteFirstItem(){
+            if (allItems == '') {
+                alert('Your cart is empty!')
+            }else{
+            allItems.shift(userInput.value)
+            console.log(allItems);
+            disp.innerHTML = `<h1>${allItems}</h1>`
+            }
+        }
+
+        function deleteOneItem() {
+            if (allItems == '') {
+                alert('No item to delete')
+            }else{
+            var index = prompt('What index do you want to delete?')
+            allItems.splice(index,1)
+            console.log(allItems);
+            disp.innerHTML =  `<h1>${allItems}</h1>`
+            }
+        }
+
+        function editOneItem() {
+            if (allItems == '') {
+                alert('No item to edit!')
+            }else{
+            var index = prompt('what index do you want to edit?')
+            var replace = prompt('input the new value')
+            allItems.splice(index,1, replace)
+            console.log(allItems);
+            disp.innerHTML =  `<h1>${allItems}</h1>`
+        }
+    }
+
+    
+
+
+
+
+
+
+    //    var allStudents = ['Tunmise','Bolatito', 'Seyi'
+    //    ] 
+    //    console.log(allStudents);
+    //    console.log(allStudents[1]);
+    //    console.log(allStudents.length);
+
+
+        // var allColors = ['blue','pink', 'yellow', 'orange']
+        // allColors[1] = 'violet'
+        // allColors.pop()
+        // allColors.shift()
+        // allColors.push('green')
+        // allColors.splice(startingIndex, deleteNumber,replacement)
+        // allColors.splice(0,2, 'red')
+        // allColors.splice(2,1, 'purple')
+        // console.log(allColors);
+
+    </script>
+</body>
+</html>
